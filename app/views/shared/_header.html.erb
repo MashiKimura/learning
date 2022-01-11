@@ -1,7 +1,7 @@
 <header>
   <% if user_signed_in? %>
     <ul>
-      <li><%= link_to 'マイページ', '#' %></li>
+      <li><%= link_to current_user.nickname, '#' %></li>
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
     </ul>
   <% else %>
