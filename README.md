@@ -10,7 +10,7 @@
 
 ### Association
 - has_one :setting
-- has_many :learnings
+- has_many :s_learnings
 
 ## settings
 | Column              | Type        | Options                       |
@@ -21,12 +21,12 @@
 ### Association
 - belongs_to :user
 
-## learnings
+## s_learnings
 | Column              | Type        | Options                       |
 | ------------------- |------------ | ----------------------------- |
 | subject             | string      | null: false                   |
 | g_date              | date        |                               |
-| user                | references  | null: false, forign_key: true |
+| user                | references  | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -40,10 +40,10 @@
 | e_page              | integer     | null: false                   |
 | s_date              | date        | null: false                   |
 | e_date              | date        | null: false                   |
-| learning            | references  | null: false, forign_key: true |
+| s_learning            | references  | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :learning
+- belongs_to :s_learning
 - has_many :records
 - has_many
 
@@ -54,7 +54,7 @@
 | re_date             | datetime    | null: false                   |
 | rs_page             | integer     | null: false                   |
 | re_page             | integer     | null: false                   |
-| textbook            | references  | null: false, forign_key: true |
+| textbook            | references  | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :textbooks
@@ -68,7 +68,7 @@
 | w_page              | integer     | null: false                   |
 | speed               | integer     | null: false                   |
 | achief_r            | float       | null: false                   |
-| textbook            | references  | null: false, forign_key: true |
+| textbook            | references  | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :textbook

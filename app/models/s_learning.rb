@@ -1,0 +1,2 @@
+class SLearning < ApplicationRecord
+end
