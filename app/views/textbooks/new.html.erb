@@ -1,0 +1,26 @@
+<h1>教材登録画面</h1>
+<%= form_with model: @textbook, url: textbooks_path, local: true do |f| %>
+  <%# error_massages %>
+  <%= render 'shared/error_messages', model: f.object %>
+  <%# book %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">参考書名</label>
+      <span class="indispensable">必須</span>
+    </div>  
+    <%= f.text_area :book, id:"book", placeholder:"参考書名", autofocus: true %>
+  </div>
+  <%# page %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">学習ページ入力</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.text_area :s_page, id:"s_page", placeholder:"学習する最初のページ" %>
+    <%= f.text_area :e_page, id:"e_page", placeholder:"学習する最後のページ" %>
+  </div>
+  <%# submit %>
+  <div class='register-btn'>
+    <%= f.submit "参考書登録" ,class:"register-red-btn" %>
+  </div>
+<% end %>
