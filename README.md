@@ -76,7 +76,7 @@ learning
 
 ## df_times
 | Column              | Type        | Options                         |
-| ------------------- |------------ | ------------------------------- |
+| ------------------- |---------- -- | ------------------------------- |
 | d_sun               | integer     | null: false                     |
 | d_mon               | integer     | null: false                     |
 | d_tue               | integer     | null: false                     |

@@ -10,42 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_13_013245) do
-
-  create_table "s_learnings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "subject", null: false
-    t.date "g_date", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_s_learnings_on_user_id"
-  end
-
-  create_table "settings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "s_day", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_settings_on_user_id"
-  end
-
-  create_table "textbooks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "book", null: false
-    t.integer "s_page", null: false
-    t.integer "e_page", null: false
-    t.date "s_date", null: false
-    t.date "e_date", null: false
-    t.bigint "s_learning_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["s_learning_id"], name: "index_textbooks_on_s_learning_id"
-  end
+ActiveRecord::Schema.define(version: 2022_01_11_015730) do
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "nickname", null: false
-    t.date "birth_day", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -55,7 +25,4 @@ ActiveRecord::Schema.define(version: 2022_01_13_013245) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "s_learnings", "users"
-  add_foreign_key "settings", "users"
-  add_foreign_key "textbooks", "s_learnings"
 end
