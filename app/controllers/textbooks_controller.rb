@@ -1,6 +1,6 @@
 class TextbooksController < ApplicationController
   def index
-    
+    @textbooks = Textbook.where(user: current_user)
   end
   def new
     @textbook = Textbook.new

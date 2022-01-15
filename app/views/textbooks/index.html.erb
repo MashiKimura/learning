@@ -6,10 +6,20 @@
 
 <%# 教材登録 %>
 <ul>
+<% if @textbooks.present? %>
+  <% @textbooks.each do |textbook| %>
+    <li>
+      <div>
+        <div>登録した参考書</div>
+        <div><%= textbook.book %></div>
+      </div>
+    </li>
+  <% end %>
+<% end %>
   <li>
     <%= link_to new_textbook_path do %>
       <div>
-        <div>画像</div>
+        <div>画像　参考書の追加</div>
         <div>名前</div>
       </div>
     <% end %>
