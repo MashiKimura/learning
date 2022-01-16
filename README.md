@@ -60,7 +60,6 @@ learning
 
 ### Association
 - belongs_to :textbook
-- 
 
 ## records
 | Column              | Type        | Options                         |

@@ -12,6 +12,7 @@
       <div>
         <div>登録した参考書</div>
         <div><%= textbook.book %></div>
+        <div><%= link_to "学習記録をする", new_textbook_record_path(textbook) %></div>
       </div>
     </li>
   <% end %>

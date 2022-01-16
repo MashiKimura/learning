@@ -1,0 +1,41 @@
+<h1>学習記録画面</h1>
+<%= form_with model: @record, url: textbook_records_path(@textbook), local: true do |f| %>
+  <%# error_massages %>
+  <%= render 'shared/error_messages', model: f.object %>
+  <%# 日付 %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">日付</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.date_select :r_date, id:"r_date", value: Date.today, autofocus: true %>
+  </div>
+  <%# 時間 %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">学習時間</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.time_select :r_time, id:"r_time" %>z１
+  </div>
+  <%# ページ %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">何ページまで進んだ？</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.text_area :r_page, id:"r_page", placeholder:"30" %>
+  </div>
+  <%# コメント %>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">コメント</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <%= f.text_area :r_text, id:"r_text", placeholder:"何を学習しましたか。" %>
+  </div>
+  <%# submit %>
+  <div class='register-btn'>
+    <%= f.submit "学習記録" ,class:"register-red-btn" %>
+  </div>
+<% end %>
