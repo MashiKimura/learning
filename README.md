@@ -65,9 +65,10 @@ learning
 | Column              | Type        | Options                         |
 | ------------------- |------------ | ------------------------------- |
 | r_date              | date        | null: false                     |
-| r_time              | time        | null: false                     |
+| hours               | integer     | null: false                     |
+| minutes             | integer     | null: false                     |
 | r_page              | integer     | null: false                     |
-| r_text              | integer     | null: false                     |
+| r_text              | string      | null: false                     |
 | textbook            | references  | null: false, foreign_key: true  |
 
 ### Association

@@ -1,12 +1,11 @@
 class RecordsController < ApplicationController
-  before_action :textbook_id_params, only: [:new]
+  before_action :textbook_id_params, only: [:new, :create]
   def new
     @record = Record.new
   end
 
   def create
-    binding.pry
-    @record = Record.new(:record_params)
+    @record = Record.new(record_params)
     if @record.save
       redirect_to root_path
     else
@@ -21,7 +20,9 @@ class RecordsController < ApplicationController
   end
 
   def record_params
-    params.require(:record).permit(:r_date, :r_time, :r_page, :r_text).merge(textbook_id: @textbook.id)
+    r_date = params.require(:record).permit(:r_date)
+    @date = Date.parse(r_date["r_date(1i)"] + "-" + r_date["r_date(2i)"] + "-" + r_date["r_date(3i)"])
+    params.require(:record).permit(:hours, :minutes, :r_page, :r_text).merge(textbook_id: @textbook.id, r_date: @date)
   end
 end
 

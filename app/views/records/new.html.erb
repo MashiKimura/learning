@@ -16,7 +16,10 @@
       <label class="form-text">学習時間</label>
       <span class="indispensable">必須</span>
     </div>
-    <%= f.time_select :r_time, id:"r_time" %>z１
+    <%= f.number_field :hours, id:"hours" %>
+    <span>時間</span>
+    <%= f.number_field :minutes, id:"minutes" %>
+    <span>分</span>
   </div>
   <%# ページ %>
   <div class="form-group">

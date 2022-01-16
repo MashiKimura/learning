@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_16_070848) do
+ActiveRecord::Schema.define(version: 2022_01_16_080735) do
 
   create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "r_date", null: false
     t.integer "r_page", null: false
-    t.integer "r_text", null: false
+    t.text "r_text", null: false
     t.bigint "textbook_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
