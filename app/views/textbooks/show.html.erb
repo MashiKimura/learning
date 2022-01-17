@@ -1,0 +1,17 @@
+<h1><%= @textbook.book %></h1>
+
+<div>
+  <% @records.each do |record| %>
+    <%= record.hours %>
+    時間
+    <%= record.minutes %>
+    分
+  <% end %>
+</div>
+<div>
+  合計
+  <%= @sum_hours %>
+  時間
+  <%= @sum_minutes %>
+  分
+</div>
