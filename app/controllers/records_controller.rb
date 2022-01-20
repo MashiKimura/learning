@@ -2,6 +2,8 @@ class RecordsController < ApplicationController
   before_action :textbook_id_params, only: [:new, :create]
   def new
     @record = Record.new
+    records = Record.where(textbook_id: textbook_id_params)
+    @max_page = records.maximum(:r_page)
   end
 
   def create

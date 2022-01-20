@@ -1,20 +1,19 @@
-<h1><%= @textbook.book %></h1>
+<h1 class="textbook-title">これまでの学習履歴を確認しましょう！</h1>
+<div class="row g-3">
+  <h1><%= @textbook.book %></h1>
 
-<div>
-  <% @records.each do |record| %>
-    <%= record.hours %>
-    時間
-    <%= record.minutes %>
-    分
-  <% end %>
+  <div class="graph_content">
+    <div class="datetime_content">
+      <p class="date_content"><%= "今週：#{@tb_date.strftime('%Y/%m/%d(%a)')} 〜 #{@te_date.strftime('%Y/%m/%d(%a)')}" %></p>
+      <p class="time_content"><%= "合計学習時間：#{@sum_time_t[:hours]} 時間 #{@sum_time_t[:minutes]} 分" %></p>
+    </div>
+    <%= column_chart @date_hash_t %>
+  </div>
+  <div class="graph_content">
+    <div class="datetime_content">
+      <p class="date_content"><%= "先週：#{@lb_date.strftime('%Y/%m/%d(%a)')} 〜 #{@le_date.strftime('%Y/%m/%d(%a)')}" %></p>
+      <p class="time_content"><%= "合計学習時間：#{@sum_time_l[:hours]} 時間 #{@sum_time_l[:minutes]} 分" %></p>
+    </div>
+    <%= column_chart @date_hash_l %>
+  </div>
 </div>
-<div>
-  合計
-  <%= @sum_hours %>
-  時間
-  <%= @sum_minutes %>
-  分
-</div>
-
-
-<%= column_chart @date_hash %>

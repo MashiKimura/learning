@@ -1,0 +1,13 @@
+.container-fluid {
+  padding: 0 150px;
+}
+
+.navbar-brand {
+  font-size: 30px;
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

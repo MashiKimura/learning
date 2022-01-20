@@ -1,0 +1,64 @@
+.row-center {
+  width: 100%;
+}
+
+.row-r {
+  margin: 0 auto;
+}
+
+.form-box {
+  height: 20px;
+}
+
+.input-date-wrap {
+  display: flex;
+}
+
+.input-date-wrap p {
+  line-height: 30px;
+  padding: 0 10px;
+}
+
+.form-text {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.input-times {
+  text-align: center;
+  font-size: 20px;
+}
+
+.input-hours {
+  width: 60px;
+}
+
+.input-minutes {
+  width: 100px;
+}
+
+.left-30 {
+  margin-left: 30px;
+}
+
+.input-data {
+  height: 40px;
+}
+
+.input-page {
+  width: 60px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.input-text{
+  height: 200px;
+  width: 400px;
+}
+
+.register-btn {
+  margin-left: 150px;
+}
+
+::placeholder {
+  color: #d4d4d4; }

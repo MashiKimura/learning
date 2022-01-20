@@ -1,44 +1,59 @@
-<h1>学習記録画面</h1>
+<h1 class="textbook-title">学習記録をしましょう！</h1>
 <%= form_with model: @record, url: textbook_records_path(@textbook), local: true do |f| %>
-  <%# error_massages %>
-  <%= render 'shared/error_messages', model: f.object %>
-  <%# 日付 %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">日付</label>
-      <span class="indispensable">必須</span>
+  <div class="row g-3">
+    <h1><%= @textbook.book %></h1>
+    <%# error_massages %>
+    <%= render 'shared/error_messages', model: f.object %>
+    <%# 日付 %>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">日付</label>
+        <%# <span class="indispensable">必須</span> %>
+      </div>
+      <div class="input-date-wrap input-data left-30">
+        <%= raw sprintf(
+          f.date_select(
+            :r_date,
+            use_month_numbers:true,
+            id:"r_date",
+            value: Date.today,
+            autofocus: true,
+            date_separator: '%s'),
+            "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+      </div>
     </div>
-    <%= f.date_select :r_date, id:"r_date", value: Date.today, autofocus: true %>
-  </div>
-  <%# 時間 %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">学習時間</label>
-      <span class="indispensable">必須</span>
+    <%# 時間 %>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">学習時間</label>
+        <%# <span class="indispensable">必須</span> %>
+      </div>
+      <%= f.number_field :hours, id:"hours", class:"left-30 input-times input-hours input-data", placeholder:"2" %>
+      <span>時間</span>
+      <%= f.number_field :minutes, id:"minutes", class:"input-times input-minutes input-data", placeholder:"30" %>
+      <span>分</span>
     </div>
-    <%= f.number_field :hours, id:"hours" %>
-    <span>時間</span>
-    <%= f.number_field :minutes, id:"minutes" %>
-    <span>分</span>
-  </div>
-  <%# ページ %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">何ページまで進んだ？</label>
-      <span class="indispensable">必須</span>
+    <%# ページ %>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">何ページまで進みましたか</label>
+        <%# <span class="indispensable">必須</span> %>
+      </div>
+      <span class="left-30">前回<%= @max_page %>ページ　〜　</span>
+      <%= f.text_area :r_page, id:"r_page",class:"input-page input-data" ,placeholder:"30" %>
+      <span>ページ</span>
     </div>
-    <%= f.text_area :r_page, id:"r_page", placeholder:"30" %>
-  </div>
-  <%# コメント %>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">コメント</label>
-      <span class="indispensable">必須</span>
+    <%# コメント %>
+    <div class="form-group">
+      <div class='form-text-wrap'>
+        <label class="form-text">コメント</label>
+        <%# <span class="indispensable">必須</span> %>
+      </div>
+      <%= f.text_area :r_text, id:"r_text",class:"left-30 input-text", placeholder:"学習内容や疑問点、感想など" %>
     </div>
-    <%= f.text_area :r_text, id:"r_text", placeholder:"何を学習しましたか。" %>
-  </div>
-  <%# submit %>
-  <div class='register-btn'>
-    <%= f.submit "学習記録" ,class:"register-red-btn" %>
+    <%# submit %>
+    <div class='register-btn'>
+      <%= f.submit "学習記録" ,class:"register-red-btn left-30" %>
+    </div>
   </div>
 <% end %>

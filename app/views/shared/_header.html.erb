@@ -1,13 +1,35 @@
-<header>
-  <% if user_signed_in? %>
-    <ul>
-      <li><%= link_to current_user.nickname, '#' %></li>
-      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
-    </ul>
-  <% else %>
-    <ul>
-      <li><%= link_to '新規登録', new_user_registration_path   %></li>
-      <li><%= link_to 'ログイン', new_user_session_path %></li>
-    </ul>
-  <% end %>
-</header>
+<%# CSS・・・assets/stylesheets/shared/header.css %>
+<%# ヘッダー %>
+<nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+  <div class="container-fluid">
+    <div class="top-title">
+      <%= link_to 'Learning', root_path, class:"navbar-brand" %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarsExample02">
+      <ul class="navbar-nav me-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to current_user.nickname, '#', class:"nav-link active" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:"nav-link active" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to '新規登録', new_user_registration_path, class:"nav-link active" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ログイン', new_user_session_path, class:"nav-link active" %>
+          </li>
+        <% end %>
+      </ul>
+      <%# <form>
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+      </form> %>
+    </div>
+  </div>
+</nav>

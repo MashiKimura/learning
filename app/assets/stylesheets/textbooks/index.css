@@ -1,0 +1,24 @@
+.textbook-title {
+  padding: 20px 180px;
+  background-color: lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-text {
+  font-size: 20px;
+}
+
+.row {
+  padding: 30px 150px;
+  border-top: 10px double rgb(131, 131, 133) ;
+}
+
+.col {
+  width: 25%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
