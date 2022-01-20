@@ -82,7 +82,7 @@ class TextbooksController < ApplicationController
   end
 
   def textbook_params
-    params.require(:textbook).permit(:book, :s_page, :e_page).merge(user_id: current_user.id)
+    params.require(:textbook).permit(:book, :s_page, :e_page, :image).merge(user_id: current_user.id)
   end
 
   def sum_time(records)

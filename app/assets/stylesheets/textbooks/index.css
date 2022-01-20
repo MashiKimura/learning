@@ -22,3 +22,25 @@
 .form-group {
   margin-bottom: 20px;
 }
+
+.card {
+  height: 500px;
+}
+
+.card-image {
+  height: 380px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-body {
+  height: 120px;
+}
+
+.book_img {
+  height: auto;
+  width: 80%;
+  max-height: 380px;
+}
