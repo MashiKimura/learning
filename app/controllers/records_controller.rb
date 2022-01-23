@@ -9,7 +9,7 @@ class RecordsController < ApplicationController
   def create
     @record = Record.new(record_params)
     if @record.save
-      redirect_to root_path
+      redirect_to textbook_path(@textbook.id)
     else
       render :new
     end
