@@ -9,7 +9,6 @@
     <div class="form-group">
       <div class='form-text-wrap'>
         <label class="form-text">メールアドレス</label>
-        <%# <span class="indispensable">必須</span> %>
       </div>
       <%= f.email_field :email, class:"input-default left-30 user-form-base", id:"email", placeholder:"　PC・携帯どちらでも可", autofocus: true %>
     </div>
@@ -17,7 +16,6 @@
     <div class="form-group">
       <div class='form-text-wrap'>
         <label class="form-text">パスワード</label>
-        <%# <span class="indispensable">必須</span> %>
       </div>
       <%= f.password_field :password, class:"input-default left-30 user-form-base", id:"password", placeholder:"　6文字以上の半角英数字" %>
       <p class='info-text left-30'>※英字と数字の両方を含めて設定してください</p>
@@ -26,7 +24,6 @@
     <div class="form-group">
       <div class='form-text-wrap'>
         <label class="form-text">パスワード(確認)</label>
-        <%# <span class="indispensable">必須</span> %>
       </div>
       <%= f.password_field :password_confirmation, class:"input-default left-30 user-form-base", id:"password-confirmation", placeholder:"　同じパスワードを入力して下さい" %>
     </div>
@@ -34,9 +31,9 @@
     <div class="form-group">
       <div class='form-text-wrap'>
         <label class="form-text">ニックネーム</label>
-        <%# <span class="indispensable">必須</span> %>
       </div>
       <%= f.text_field :nickname, class:"input-default left-30 user-form-base", id:"nickname", placeholder:"　例) 山田 太郎", maxlength:"40" %>
+      <p class='info-text left-30'>※20字以内で入力してください</p>
     </div>
     <%# submit %>
     <div class='register-btn'>
