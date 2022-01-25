@@ -10,6 +10,10 @@ RSpec.describe Textbook, type: :model do
       it '全ての項目が入力されていれば登録できる' do
         expect(@textbook).to be_valid
       end
+      it '画像がなければ登録できる' do
+        @textbook.image = nil
+        expect(@textbook).to be_valid
+      end
     end
     context '教材の登録ができないとき' do
       it '教材名が空では登録できない' do
