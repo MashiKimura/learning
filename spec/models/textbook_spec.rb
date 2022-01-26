@@ -8,6 +8,7 @@ RSpec.describe Textbook, type: :model do
   describe '教材登録' do
     context '教材の登録ができるとき' do
       it '全ての項目が入力されていれば登録できる' do
+        @textbook.valid?
         expect(@textbook).to be_valid
       end
       it '画像がなければ登録できる' do
