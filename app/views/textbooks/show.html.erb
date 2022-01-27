@@ -2,18 +2,22 @@
 <div class="row g-3">
   <h1><%= @textbook.book %></h1>
 
-  <div class="graph_content">
-    <div class="datetime_content">
-      <p class="date_content"><%= "今週：#{@tb_date.strftime('%Y/%m/%d(%a)')} 〜 #{@te_date.strftime('%Y/%m/%d(%a)')}" %></p>
-      <p class="time_content"><%= "合計学習時間：#{@sum_time_t[:hours]} 時間 #{@sum_time_t[:minutes]} 分" %></p>
+  <% if @max_date.present? %>
+    <div class="graph_content">
+      <div class="datetime_content">
+        <p class="date_content"><%= "#{@tb_date.strftime('%Y/%m/%d(%a)')} 〜 #{@te_date.strftime('%Y/%m/%d(%a)')}" %></p>
+        <p class="time_content"><%= "合計学習時間：#{@sum_time_t[:hours]} 時間 #{@sum_time_t[:minutes]} 分" %></p>
+      </div>
+      <%= column_chart @date_hash_t %>
     </div>
-    <%= column_chart @date_hash_t %>
-  </div>
-  <div class="graph_content">
-    <div class="datetime_content">
-      <p class="date_content"><%= "先週：#{@lb_date.strftime('%Y/%m/%d(%a)')} 〜 #{@le_date.strftime('%Y/%m/%d(%a)')}" %></p>
-      <p class="time_content"><%= "合計学習時間：#{@sum_time_l[:hours]} 時間 #{@sum_time_l[:minutes]} 分" %></p>
+  <% end %>
+  <% if @prev_week_present.present? %>
+    <div class="graph_content">
+      <div class="datetime_content">
+        <p class="date_content"><%= "#{@lb_date.strftime('%Y/%m/%d(%a)')} 〜 #{@le_date.strftime('%Y/%m/%d(%a)')}" %></p>
+        <p class="time_content"><%= "合計学習時間：#{@sum_time_l[:hours]} 時間 #{@sum_time_l[:minutes]} 分" %></p>
+      </div>
+      <%= column_chart @date_hash_l %>
     </div>
-    <%= column_chart @date_hash_l %>
-  </div>
+  <% end %>
 </div>

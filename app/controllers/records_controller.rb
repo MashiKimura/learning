@@ -10,8 +10,7 @@ class RecordsController < ApplicationController
     @record = Record.new(record_params)
     @record = hours_and_minutes_into_zero(@record)
     if @record.save
-      # redirect_to textbook_path(@textbook.id)
-      redirect_to root_path
+      redirect_to textbook_path(@textbook.id)
     else
       render :new
     end
