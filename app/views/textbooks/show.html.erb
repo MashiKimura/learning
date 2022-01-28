@@ -1,7 +1,6 @@
 <h1 class="textbook-title">これまでの学習履歴を確認しましょう！</h1>
 <div class="row g-3">
   <h1><%= @textbook.book %></h1>
-
   <% if @max_date.present? %>
     <div class="graph_content">
       <div class="datetime_content">
@@ -20,4 +19,22 @@
       <%= column_chart @date_hash_l %>
     </div>
   <% end %>
+
+  <div >
+    <div class="list-group">
+      <% @records.each do |record| %>
+        <a href="#" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <div class="left-style">
+              <h5 class="mb-1 left-style-unit"><%= "日付:#{record.r_date}" %></h5>
+              <h6 class="mb-1 left-style-unit"><%= "学習時間:#{record.hours}時間#{record.minutes}分" %></h6>
+              <h6 class="mb-1 left-style-unit"><%= "〜#{record.r_page}ページ" %></h6>
+            </div>
+            <small><%= "更新日:#{record.created_at.strftime('%Y/%m/%d %H:%M')}" %></small>
+          </div>
+          <small><%= "コメント:#{record.r_text}" %></small>
+        </a>
+      <% end %>
+    </div>
+  </div>
 </div>

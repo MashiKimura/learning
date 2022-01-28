@@ -16,7 +16,7 @@ class TextbooksController < ApplicationController
   end
   def show
     #学習時間配列の取得
-    @records = Record.where(textbook_id: @textbook.id)
+    @records = Record.where(textbook_id: @textbook.id).order(r_date: "DESC")
     #日付でグループ化
     date_group_h = @records.group_by_day(:r_date).sum(:hours)
     date_group_m = @records.group_by_day(:r_date).sum(:minutes)

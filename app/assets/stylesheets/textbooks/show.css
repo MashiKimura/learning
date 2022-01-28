@@ -15,5 +15,11 @@
   font-size: 20px;
 }
 
+.left-style {
+  display: flex;
+  justify-content: left;
+}
 
-
+.left-style-unit {
+  margin-right: 20px;
+}
