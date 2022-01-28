@@ -1,0 +1,2 @@
+class DfTime < ApplicationRecord
+end

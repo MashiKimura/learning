@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_20_055329) do
+ActiveRecord::Schema.define(version: 2022_01_28_073449) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,20 @@ ActiveRecord::Schema.define(version: 2022_01_20_055329) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "df_times", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "d_sun", null: false
+    t.integer "d_mon", null: false
+    t.integer "d_tue", null: false
+    t.integer "d_wed", null: false
+    t.integer "d_thu", null: false
+    t.integer "d_fri", null: false
+    t.integer "d_sat", null: false
+    t.bigint "textbook_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["textbook_id"], name: "index_df_times_on_textbook_id"
   end
 
   create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -69,6 +83,7 @@ ActiveRecord::Schema.define(version: 2022_01_20_055329) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "df_times", "textbooks"
   add_foreign_key "records", "textbooks"
   add_foreign_key "textbooks", "users"
 end
