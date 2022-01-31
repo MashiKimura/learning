@@ -1,0 +1,35 @@
+.sideways {
+  height: 40px;
+  display: flex;
+}
+
+.input-week {
+  width: 50px;
+  text-align: center;
+}
+
+.left-100 {
+  margin-left: 100px;
+}
+
+.head-1 {
+  font-size: 30px;
+  border-bottom:thick double black;
+  margin: 10px 0 10px 0 ;
+}
+
+.align-items-end {
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid black;
+}
+
+.p-time {
+  width: 40px;
+  height: 10px;
+  font-size: 20px;
+}
+
+.goals-btn {
+  margin-top: 20px;
+}

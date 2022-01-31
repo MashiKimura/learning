@@ -39,6 +39,9 @@ class TextbooksController < ApplicationController
         @sum_time_l = sum_time_week(@lb_date, @le_date)
       end
     end
+
+    #目標学習時間の取得
+    @df_time = DfTime.find_by(textbook_id: @textbook.id)
   end
 
   private
