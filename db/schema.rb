@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_28_073449) do
+ActiveRecord::Schema.define(version: 2022_02_01_003048) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(version: 2022_01_28_073449) do
   end
 
   create_table "df_times", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "d_sun", null: false
-    t.integer "d_mon", null: false
-    t.integer "d_tue", null: false
-    t.integer "d_wed", null: false
-    t.integer "d_thu", null: false
-    t.integer "d_fri", null: false
-    t.integer "d_sat", null: false
+    t.integer "d_sun", default: 0, null: false
+    t.integer "d_mon", default: 0, null: false
+    t.integer "d_tue", default: 0, null: false
+    t.integer "d_wed", default: 0, null: false
+    t.integer "d_thu", default: 0, null: false
+    t.integer "d_fri", default: 0, null: false
+    t.integer "d_sat", default: 0, null: false
     t.bigint "textbook_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
