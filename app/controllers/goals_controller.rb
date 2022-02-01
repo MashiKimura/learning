@@ -1,17 +1,5 @@
 class GoalsController < ApplicationController
-  before_action :textbook_id_params, only: [:new,:create,:edit,:update]
-  def new
-    @df_time = DfTime.new
-  end
-
-  def create
-    @df_time = DfTime.new(params_df_time)
-    if @df_time.save
-      redirect_to textbook_path(@textbook)
-    else
-      render :new
-    end
-  end
+  before_action :textbook_id_params, only: [:edit,:update]
 
   def edit
     @df_time = DfTime.find_by(textbook_id: @textbook.id)
