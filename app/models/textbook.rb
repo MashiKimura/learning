@@ -1,8 +1,8 @@
 class Textbook < ApplicationRecord
 
   belongs_to :user
-  has_many :records
-  has_one :df_time
+  has_many :records, dependent: :destroy
+  has_one :df_time, dependent: :destroy
   has_one_attached :image
 
   with_options presence: true do

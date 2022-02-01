@@ -1,5 +1,5 @@
 class TextbooksController < ApplicationController
-  before_action :id_params, only: [:show]
+  before_action :id_params, only: [:show, :destroy]
   def index
     @textbooks = Textbook.where(user: current_user)
   end
@@ -9,6 +9,7 @@ class TextbooksController < ApplicationController
   def create
     @textbook = Textbook.new(textbook_params)
     if @textbook.save
+      dftime = DfTime.create(textbook_id: @textbook.id)
       redirect_to root_path
     else
       render :new
@@ -78,6 +79,11 @@ class TextbooksController < ApplicationController
 
     #目標学習時間の取得
     @df_time = DfTime.find_by(textbook_id: @textbook.id)
+  end
+
+  def destroy
+    @textbook.destroy
+    redirect_to root_path
   end
 
   private
