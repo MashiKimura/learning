@@ -1,0 +1,93 @@
+<div class="textbook-title">
+  <h1>週間目標時間の設定</h1>
+</div>
+
+<div class="row g-3">
+  <%= form_with model: @df_time, url: textbook_goal_path(@textbook), local: true do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
+    <div class="container">
+      <div class="col">
+        <div>
+          <label class="head-1">月曜日</label>
+        </div>
+        <div class="left-100 sideways">
+          <%= f.number_field :d_mon, id:"d_mon", class:"input-week" %>
+          <div class="align-items-end">
+            <p class="left-30 p-time">時間</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <label class="head-1">火曜日</label>
+        </div>
+        <div class="left-100 sideways">
+          <%= f.number_field :d_tue, id:"d_tue",class:"input-week" %>
+          <div class="align-items-end">
+            <p class="left-30 p-time">時間</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <label class="head-1">水曜日</label>
+        </div>
+        <div class="left-100 sideways">
+          <%= f.number_field :d_wed, id:"d_wed",class:"input-week" %>
+          <div class="align-items-end">
+            <p class="left-30 p-time">時間</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <label class="head-1">木曜日</label>
+        </div>
+        <div class="left-100 sideways">
+          <%= f.number_field :d_thu, id:"d_thu",class:"input-week" %>
+          <div class="align-items-end">
+            <p class="left-30 p-time">時間</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <label class="head-1">金曜日</label>
+        </div>
+        <div class="left-100 sideways">
+          <%= f.number_field :d_fri, id:"d_fri",class:"input-week" %>
+          <div class="align-items-end">
+            <p class="left-30 p-time">時間</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <label class="head-1">土曜日</label>
+        </div>
+        <div class="left-100 sideways">
+          <%= f.number_field :d_sat, id:"d_sat",class:"input-week" %>
+          <div class="align-items-end">
+            <p class="left-30 p-time">時間</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <label class="head-1">日曜日</label>
+        </div>
+        <div class="left-100 sideways">
+          <%= f.number_field :d_sun, id:"d_sut",class:"input-week" %>
+          <div class="align-items-end">
+            <p class="left-30 p-time">時間</p>
+          </div>
+        </div>
+      </div>
+
+      <div class='register-btn goals-btn'>
+        <%= f.submit "目標時間を設定する" ,class:"register-red-btn " %>
+      </div>
+
+    </div>
+  <% end %>
+</div>
