@@ -13,7 +13,7 @@
           <% if textbook.image.attached? %>
             <%= image_tag textbook.image, class:"bd-placeholder-img card-img-top book_img" %>
           <% else %>
-            <%= image_tag "no_image.png", class:"bd-placeholder-img card-img-top book_img" %>
+            <%= image_tag "no_image.png", class:"no-data-img" %>
           <% end %>
         </div>
         <div class="card-body">

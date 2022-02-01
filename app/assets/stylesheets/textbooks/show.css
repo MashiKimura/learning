@@ -23,3 +23,8 @@
 .left-style-unit {
   margin-right: 20px;
 }
+
+.no-data-img {
+  height: 500px;
+  width: 100%;
+}

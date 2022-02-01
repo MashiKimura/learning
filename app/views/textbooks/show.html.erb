@@ -5,65 +5,6 @@
 
 <div class="row g-3">
   <h1><%= @textbook.book %></h1>
-<%# chart-js-railsの導入 %>
-  <canvas id="myChart" width="400" height="400"></canvas>
-  <script>
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-  </script>
- 
-
-  <%# 目標表示 chartkick %>
-  <div> 
-    <%= Date.today %>
-    <div>
-      月曜日<%= @df_time.d_mon %>時間
-    </div>
-    <%= @df_time.d_tue %>
-    <%= @df_time.d_wed %>
-    <%= @df_time.d_thu %>
-    <%= @df_time.d_fri %>
-    <%= @df_time.d_sat %>
-    <%= @df_time.d_sun %>
-
-    <h2>目標学習時間</h2>
-    <%# <%= column_chart ({"月"=> @df_time.d_mon,"火"=>@df_time.d_tue,"水"=>@df_time.d_wed,"木"=>@df_time.d_thu,"金"=>@df_time.d_fri,"土"=>@df_time.d_sat,"日"=>@df_time.d_sun}) %> %>
-    
-
-  </div>
 
   <%# グラフ %>
   <h2>週間学習時間</h2>
@@ -73,7 +14,14 @@
         <p class="date_content"><%= "#{@tb_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@tb_date.wday]})")} 〜 #{@te_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@te_date.wday]})")}" %></p>
         <p class="time_content"><%= "合計学習時間：#{@sum_time_t[:hours]} 時間 #{@sum_time_t[:minutes]} 分" %></p>
       </div>
-      <%# <%= column_chart @date_hash_t %> %>
+      <canvas id="myChart1" width="300" height="100"></canvas>
+    </div>
+  <% elsif @df_time_data.present? %>
+    <div class="graph_content">
+      <div class="datetime_content">
+        <p class="date_content"><%= "#{@b_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@b_date.wday]})")} 〜 #{@e_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@e_date.wday]})")}" %></p>
+      </div>
+      <canvas id="myChart1" width="300" height="100"></canvas>
     </div>
   <% end %>
   <% if @prev_week_present.present? %>
@@ -82,7 +30,7 @@
         <p class="date_content"><%= "#{@lb_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@lb_date.wday]})")} 〜 #{@le_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@le_date.wday]})")}" %></p>
         <p class="time_content"><%= "合計学習時間：#{@sum_time_l[:hours]} 時間 #{@sum_time_l[:minutes]} 分" %></p>
       </div>
-      <%# <%= column_chart @date_hash_l %> %>
+      <canvas id="myChart2" width="300" height="100"></canvas>
     </div>
   <% end %>
 
@@ -105,3 +53,87 @@
     </div>
   </div>
 </div>
+
+  <script>
+    const ctx = document.getElementById('myChart1').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <%= @week_date %>,
+            datasets: [
+              {  
+                label: '目標学習時間',
+                data: <%= @df_time_data %>,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1
+              }
+              <% if @max_date.present? %>
+                ,{
+                  label: '学習時間',
+                  data: <%= @b_data %>,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)'
+                  ],
+                  borderWidth: 1
+                }
+              <% end %>
+            ]
+          },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+          }
+    });
+
+    <% if @prev_week_present.present? %>
+      const ctx2 = document.getElementById('myChart2').getContext('2d');
+      const myChart2 = new Chart(ctx2, {
+          type: 'bar',
+          data: {
+              labels: <%= @week_date_l %>,
+              datasets: [
+                {  
+                  label: '目標学習時間',
+                  data: <%= @df_time_data %>,
+                  backgroundColor: [
+                      'rgba(54, 162, 235, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(54, 162, 235, 1)'
+                  ],
+                  borderWidth: 1
+                },
+                {
+                  label: '学習時間',
+                  data: <%= @b_data_l %>,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)'
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)'
+                  ],
+                  borderWidth: 1
+                }
+              ]
+            },
+          options: {
+              scales: {
+                  y: {
+                      beginAtZero: true
+                  }
+              }
+            }
+      });
+    <% end %>
+  </script>
