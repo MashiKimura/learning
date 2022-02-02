@@ -24,61 +24,45 @@ class TextbooksController < ApplicationController
     date_group_m = @records.group_by_day(:r_date).sum(:minutes)
     date_hash = hours_conversion(date_group_h, date_group_m)
 
-    #グラフの開始日と終了日の取得
-    arrays = date_hash.keys
-    @max_date = arrays.max
-    @df_time_data = bar_data_dftime(@textbook) #dataに渡す目標時間
+    #dataに渡す目標時間
+    @df_time_data = bar_data_dftime(@textbook)
+
+    #ラベルに渡す日付(今日)
     @b_date = Date.today.beginning_of_week
     @e_date = Date.today.end_of_week
-    week_date = week_date_calc(@b_date, @e_date) #ラベルに渡す日付
+    week_date = week_date_calc(@b_date, @e_date)
     @week_date = week_date.to_json.html_safe
-    if @max_date.present?
-      #1番目のグラフと合計
-      @tb_date = @max_date.beginning_of_week
-      @te_date = @max_date.end_of_week
-      week_date = week_date_calc(@tb_date, @te_date) #ラベルに渡す日付
-      @week_date = week_date.to_json.html_safe
-      @b_data = bar_data_record(date_hash,week_date) #dataに渡す学習時間
-      @sum_time_t = sum_time_week(@tb_date, @te_date)
 
-      #2番目のグラフと合計
-      @lb_date = @max_date.prev_week
-      @le_date = @max_date.prev_week(:sunday)
-      week_date = week_date_calc(@lb_date, @le_date) #ラベルに渡す日付
-      @week_date_l = week_date.to_json.html_safe
-      @prev_week_present = date_hash.find{ |x| (x[0] >= @lb_date) && (x[0] <= @le_date)}
-      if @prev_week_present.present?
-        @b_data_l = bar_data_record(date_hash,week_date)
-        @sum_time_l = sum_time_week(@lb_date, @le_date)
-      end
+    #学習記録の最新日付の取得
+    arrays = date_hash.keys
+    @max_date = arrays.max
+
+    #学習記録がある場合
+    if @max_date.present?
+      #グラフ-1
+        #グラフ-1に渡す日付(1番目のグラフ)
+        @tb_date = @max_date.beginning_of_week
+        @te_date = @max_date.end_of_week
+        week_date = week_date_calc(@tb_date, @te_date)
+        @week_date = week_date.to_json.html_safe
+        #グラフ-1に渡す学習時間
+        @b_data = bar_data_record(date_hash,week_date)
+        @sum_time_t = sum_time_week(@tb_date, @te_date)
+
+      #グラフ-2
+        #グラフ-2に渡す日付(2番目のグラフ)
+        @lb_date = @max_date.prev_week
+        @le_date = @max_date.prev_week(:sunday)
+        week_date = week_date_calc(@lb_date, @le_date)
+        @week_date_l = week_date.to_json.html_safe
+        #グラフ-2に渡す学習時間
+        @prev_week_present = date_hash.find{ |x| (x[0] >= @lb_date) && (x[0] <= @le_date) && (x[1] > 0)}
+        if @prev_week_present.present?
+          @b_data_l = bar_data_record(date_hash,week_date)
+          @sum_time_l = sum_time_week(@lb_date, @le_date)
+        end
     end
 
-
-    # #日付でグループ化
-    # date_group_h = @records.group_by_day(:r_date).sum(:hours)
-    # date_group_m = @records.group_by_day(:r_date).sum(:minutes)
-    # date_hash = hours_conversion(date_group_h, date_group_m)
-    # #グラフの開始日と終了日の取得
-    # arrays = date_hash.keys
-    # @max_date = arrays.max
-    # if @max_date.present?
-    #   #1番目のグラフと合計
-    #   @tb_date = @max_date.beginning_of_week
-    #   @te_date = @max_date.end_of_week
-    #   @date_hash_t = chart_create(date_hash, @tb_date, @te_date)
-    #   @sum_time_t = sum_time_week(@tb_date, @te_date)
-    #   #2番目のグラフと合計
-    #   @lb_date = @max_date.prev_week
-    #   @le_date = @max_date.prev_week(:sunday)
-    #   @prev_week_present = date_hash.find{ |x| (x[0] >= @lb_date) && (x[0] <= @le_date)}
-    #   if @prev_week_present.present?
-    #     @date_hash_l = chart_create(date_hash, @lb_date, @le_date)
-    #     @sum_time_l = sum_time_week(@lb_date, @le_date)
-    #   end
-    # end
-
-    #目標学習時間の取得
-    @df_time = DfTime.find_by(textbook_id: @textbook.id)
   end
 
   def destroy
@@ -148,16 +132,6 @@ class TextbooksController < ApplicationController
     end
     return date_hash
   end
-
-  # def chart_create(date_hash, b_date, e_date) #グラフ用のハッシュ作成　1週間分の{日付=>時間}を返す
-  #   s_date = b_date
-  #   date_hash_w = {}
-  #   while s_date <= e_date
-  #     date_hash_w[s_date] = date_hash[s_date]
-  #     s_date += 1
-  #   end
-  #   return date_hash_w
-  # end
 
   def id_params #教材情報取得
     @textbook = Textbook.find(params[:id])
