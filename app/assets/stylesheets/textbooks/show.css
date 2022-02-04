@@ -28,3 +28,24 @@
   height: 500px;
   width: 100%;
 }
+
+ul {
+  list-style: none;
+}
+
+.today-contents, .week-contents {
+  font-size: 20px;
+  width: 500px;
+}
+
+.today-content, .week-content {
+  display: flex;
+}
+
+.today-title, .week-title {
+  width: 200px;
+}
+
+.today-text, .week-text {
+  width: 300px;
+}
