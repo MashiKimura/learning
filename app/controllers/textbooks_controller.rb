@@ -61,42 +61,45 @@ class TextbooksController < ApplicationController
           @b_data_l = bar_data_record(date_hash,week_date)
           @sum_time_l = sum_time_week(@lb_date, @le_date)
         end
-    end
-
-    # 学習速度計算
-    max_page = @records.maximum('r_page')
-    progress_page = max_page - @textbook.s_page
-    sum_hours = @records.sum(:hours)
-    sum_minutes = @records.sum(:minutes)
-    sum_time = calc_times(sum_hours, sum_minutes)
-    @learning_speed = progress_page / (sum_time[:hours] + (sum_time[:minutes].to_f / 60))
     
-    # 目標学習時間の合計とページの取得
-    # 週間目標学習時間
-    @df_time_sum = @df_time_data.sum
-    # 週間目標学習ページ
-    @df_time_page = (@learning_speed * @df_time_sum).ceil(0) + @textbook.s_page
-    # 1日の目標学習時間
-    today = Date.today
-    if today.wday == 0
-      today_wday = 6
-    else
-      today_wday = today.wday - 1
-    end
-    @df_time_today = @df_time_data[today_wday]
 
-    # 学習終了予定日
-    remaining_page = @textbook.e_page - max_page
-    necessary_time = (remaining_page / @learning_speed).ceil(0)
-    necessary_week = necessary_time / @df_time_sum.to_f 
-    necessary_day = (necessary_week * 7).ceil
-    @necessary_date = Date.today + necessary_day
+      # 学習速度計算
+      max_page = @records.maximum('r_page')
+      progress_page = max_page - @textbook.s_page
+      sum_hours = @records.sum(:hours)
+      sum_minutes = @records.sum(:minutes)
+      sum_time = calc_times(sum_hours, sum_minutes)
+      @learning_speed = progress_page / (sum_time[:hours] + (sum_time[:minutes].to_f / 60))
+      
+      if @df_time_data.max > 0
+        # 目標学習時間の合計とページの取得
+        # 週間目標学習時間
+        @df_time_sum = @df_time_data.sum
+        # 週間目標学習ページ
+        @df_time_page = (@learning_speed * @df_time_sum).ceil(0) + @textbook.s_page
+        
+        # 学習終了予定日
+        remaining_page = @textbook.e_page - max_page
+        necessary_time = (remaining_page / @learning_speed).ceil(0)
+        necessary_week = necessary_time / @df_time_sum.to_f
+        necessary_day = (necessary_week * 7).ceil
+        @necessary_date = Date.today + necessary_day
+      end
 
-    # １日の学習時間
-    today_h = date_group_h[Date.today].to_i
-    today_m = date_group_m[Date.today].to_i
-    @today_time = calc_times(today_h, today_m)
+      # １日の学習時間
+      today_h = date_group_h[Date.today].to_i
+      today_m = date_group_m[Date.today].to_i
+      @today_time = calc_times(today_h, today_m)
     
+      # 1日の目標学習時間
+      today = Date.today
+      if today.wday == 0
+        today_wday = 6
+      else
+        today_wday = today.wday - 1
+      end
+      @df_time_today = @df_time_data[today_wday]
+    end
   end
 
   def destroy

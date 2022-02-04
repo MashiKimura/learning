@@ -6,9 +6,6 @@
   align-items: center;
 }
 
-.card-text {
-  font-size: 20px;
-}
 
 .row {
   padding: 30px 150px;
@@ -39,8 +36,21 @@
   height: 120px;
 }
 
+.card-text {
+  height: 30px;
+  font-size: 20px;
+}
+
+.card-btn {
+  height: 60px;
+}
+
 .book_img {
   height: auto;
   width: 80%;
   max-height: 380px;
+}
+
+.created-at {
+  display: block;
 }
