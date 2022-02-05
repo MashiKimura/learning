@@ -15,26 +15,23 @@ class RecordsController < ApplicationController
       render :new
     end
   end
-
+  
   private
-
+  
   def textbook_id_params
     @textbook = Textbook.find(params[:textbook_id])
   end
-
+  
   def record_params
     r_date = params.require(:record).permit(:r_date)
     @date = Date.parse(r_date["r_date(1i)"] + "-" + r_date["r_date(2i)"] + "-" + r_date["r_date(3i)"])
     params.require(:record).permit(:hours, :minutes, :r_page, :r_text).merge(textbook_id: @textbook.id, r_date: @date)
   end
-
+  
   def hours_and_minutes_into_zero(record)
-    if record.hours == nil
-      record.hours = 0
-    end
-    if record.minutes == nil
-      record.minutes = 0
-    end
+    record.hours = record.hours.to_i
+    record.minutes = record.minutes.to_i
+    record.r_page = record.r_page.to_i
     return record
   end
 end

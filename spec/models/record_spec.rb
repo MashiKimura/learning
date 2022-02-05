@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Record, type: :model do
   before do
-    @record = FactoryBot.build(:record)
+    @textbook = FactoryBot.create(:textbook)
+    @record = FactoryBot.build(:record, textbook_id: @textbook.id)
+    sleep 0.1
   end
 
   describe '学習記録登録' do
@@ -75,15 +77,25 @@ RSpec.describe Record, type: :model do
         @record.valid?
         expect(@record.errors.full_messages).to include("Minutes must be an integer")
       end
-      it '終了ページが空白では登録できない' do
-        @record.r_page = ""
+      # it '終了ページが空白では登録できない' do
+      #   @record.r_page = ""
+      #   @record.valid?
+      #   expect(@record.errors.full_messages).to include("R page can't be blank")
+      # end
+      it '終了ページが教材の0だと登録できない' do
+        @record.r_page = 0
         @record.valid?
-        expect(@record.errors.full_messages).to include("R page can't be blank")
+        expect(@record.errors.full_messages).to include("R page must be between start and end")
       end
-      it '終了ページが5桁以上だと登録できない' do
-        @record.r_page = 10000
+      it '終了ページが教材の開始ページ以下だと登録できない' do
+        @record.r_page = @textbook.s_page
         @record.valid?
-        expect(@record.errors.full_messages).to include("R page must be less than or equal to 9999")
+        expect(@record.errors.full_messages).to include("R page must be between start and end")
+      end
+      it '終了ページが教材の終了ページ以上だと登録できない' do
+        @record.r_page = @textbook.e_page
+        @record.valid?
+        expect(@record.errors.full_messages).to include("R page must be between start and end")
       end
       it '終了ページが小数では登録できない' do
         @record.r_page = 10.1
