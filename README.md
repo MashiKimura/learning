@@ -1,8 +1,8 @@
 # アプリケーション名
-learning
+Learning
 
 # アプリケーション概要
-自身の学習記録から短期的な学習記録を自動的に作成し、計画に時間を先ことなく目の前の学習に集中できる学習記録アプリ。
+自身の学習記録から短期的な学習目標を自動的に作成し、計画作りに労力を割くことなく目の前の学習に集中できる学習記録アプリ。
 
 # URL
 https://learning37327.herokuapp.com/
@@ -10,7 +10,7 @@ https://learning37327.herokuapp.com/
 # テスト用アカウント
 - Basic認証パスワード:mk1234
 - Basic認証ID:Mkimura
-- メールアドレス:testuser@email
+- メールアドレス:testuser@email.com
 - パスワード:a123456
 
 # 利用方法
