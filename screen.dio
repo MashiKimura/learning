@@ -19,7 +19,7 @@
                 <mxCell id="20" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="2" target="19" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2" target="30">
+                <mxCell id="31" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="2" target="30" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="トップページ" style="rounded=1;arcSize=0;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
@@ -34,10 +34,10 @@
                 <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="6" target="7" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="ユーザーマイページ" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+                <mxCell id="6" value="ユーザーマイページ&lt;br&gt;（未実装）" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
                     <mxGeometry x="280" y="240" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="7" value="ユーザー編集ページ" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+                <mxCell id="7" value="ユーザー編集ページ&lt;br&gt;（未実装）" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
                     <mxGeometry x="480" y="240" width="150" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="17" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="13" target="14" edge="1">
@@ -58,7 +58,7 @@
                 <mxCell id="24" value="教材登録ページ" style="whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
                     <mxGeometry x="280" y="471" width="100" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="30" value="教材編集ページ" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="30" value="教材編集ページ&lt;br&gt;（未実装）" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="280" y="550" width="100" height="40" as="geometry"/>
                 </mxCell>
             </root>
