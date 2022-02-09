@@ -39,9 +39,9 @@ https://learning37327.herokuapp.com/
 # 実装予定の機能
 
 # データベース設計
-database.dio
+[![Image from Gyazo](https://i.gyazo.com/3a90cf3c176fc3a880f28453b1d595ee.png)](https://gyazo.com/3a90cf3c176fc3a880f28453b1d595ee)
 # 画面遷移図
-screen.dio
+[![Image from Gyazo](https://i.gyazo.com/d11a764c95fc13eac811b9c43db32cb4.png)](https://gyazo.com/d11a764c95fc13eac811b9c43db32cb4)
 # 開発環境
 - フロントエンド
 - バックエンド
@@ -109,7 +109,7 @@ screen.dio
 
 ## df_times
 | Column              | Type        | Options                         |
-| ------------------- |---------- -- | ------------------------------- |
+| ------------------- |------------ | ------------------------------- |
 | d_sun               | integer     | null: false                     |
 | d_mon               | integer     | null: false                     |
 | d_tue               | integer     | null: false                     |
