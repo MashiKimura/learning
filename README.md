@@ -41,12 +41,12 @@ https://learning37327.herokuapp.com/
 # 画面遷移図
 [![Image from Gyazo](https://i.gyazo.com/d11a764c95fc13eac811b9c43db32cb4.png)](https://gyazo.com/d11a764c95fc13eac811b9c43db32cb4)
 # 開発環境
-- フロントエンド
-- バックエンド
-- インフラ
-- テスト
-- テキストエディタ
-- タスク管理
+- フロントエンド　HTML&CSS, Javascript
+- バックエンド　ruby, Ruby on Rails
+- インフラ　
+- テスト　Rspec
+- テキストエディタ　VisualStudioCode
+- タスク管理　Github-ISSUE
 
 # ローカルでの動作方法
 以下のコマンドを順に実行。  
@@ -56,4 +56,4 @@ https://learning37327.herokuapp.com/
 % yarn install
 
 # 工夫したポイント
-
+    工夫したポイント
