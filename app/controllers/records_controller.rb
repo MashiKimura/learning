@@ -1,5 +1,8 @@
 class RecordsController < ApplicationController
   before_action :textbook_id_params, only: [:new, :create]
+  before_action :authenticate_user, only: [:new, :create]
+  before_action :user_match, only: [:new, :create]
+
   def new
     @record = Record.new
     records = Record.where(textbook_id: textbook_id_params)
@@ -33,6 +36,16 @@ class RecordsController < ApplicationController
     record.minutes = record.minutes.to_i
     record.r_page = record.r_page.to_i
     return record
+  end
+
+  def authenticate_user
+    redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def user_match
+    unless current_user == @textbook.user
+      redirect_to root_path
+    end
   end
 end
 
