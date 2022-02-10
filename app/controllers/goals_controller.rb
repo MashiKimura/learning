@@ -1,5 +1,7 @@
 class GoalsController < ApplicationController
   before_action :textbook_id_params, only: [:edit,:update]
+  before_action :authenticate_user, only: [:edit, :update]
+  before_action :user_match, only: [:edit, :update]
 
   def edit
     @df_time = DfTime.find_by(textbook_id: @textbook.id)
@@ -24,4 +26,13 @@ class GoalsController < ApplicationController
     params.require(:df_time).permit(:d_mon, :d_tue, :d_wed, :d_thu, :d_fri, :d_sat, :d_sun).merge(textbook_id: @textbook.id)
   end
   
+  def authenticate_user
+    redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def user_match
+    unless current_user == @textbook.user
+      redirect_to root_path
+    end
+  end
 end

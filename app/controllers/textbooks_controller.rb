@@ -1,6 +1,8 @@
 class TextbooksController < ApplicationController
   before_action :id_params, only: [:show, :destroy]
-  before_action :authenticate_user, only: [:new, :create]
+  before_action :authenticate_user, only: [:new, :create, :show, :destroy]
+  before_action :user_match, only: [:show, :destroy]
+
 
   def index
     @textbooks = Textbook.where(user: current_user)
@@ -207,5 +209,11 @@ class TextbooksController < ApplicationController
   
   def authenticate_user
     redirect_to new_user_session_path unless user_signed_in?
+  end
+
+  def user_match
+    unless current_user == @textbook.user
+      redirect_to root_path
+    end
   end
 end
