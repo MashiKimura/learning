@@ -1,7 +1,7 @@
 <%# 本棚 %>
 <div class="textbook-title">
   <h1>学習中の本棚</h1>
-  <%= link_to '追加する',new_textbook_path, class:"btn btn-add btn-outline-secondary" %>
+  <%= link_to '追加する',new_textbook_path, class:"btn btn-add btn-outline-secondary" if user_signed_in? %>
 </div>
 
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">

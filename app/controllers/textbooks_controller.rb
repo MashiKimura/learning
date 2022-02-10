@@ -1,5 +1,7 @@
 class TextbooksController < ApplicationController
   before_action :id_params, only: [:show, :destroy]
+  before_action :authenticate_user, only: [:new, :create]
+
   def index
     @textbooks = Textbook.where(user: current_user)
   end
@@ -195,12 +197,15 @@ class TextbooksController < ApplicationController
     return date_hash
   end
 
-  def id_params #教材情報取得
+  def id_params
     @textbook = Textbook.find(params[:id])
   end
 
-  def textbook_params #教材情報をフォームから取得
+  def textbook_params
     params.require(:textbook).permit(:book, :s_page, :e_page, :image).merge(user_id: current_user.id)
   end
   
+  def authenticate_user
+    redirect_to new_user_session_path unless user_signed_in?
+  end
 end
