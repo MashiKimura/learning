@@ -26,14 +26,14 @@
 # end
 
 Textbook.all.each do |textbook|
-  5.times do |n|
+  4.times do |n|
     Record.create!(
       r_date: Date.today.beginning_of_week + n,
       r_page: 20 + (n + 1),
       r_text: "testtesttest",
       textbook_id: textbook.id,
-      hours: n + 1,
-      minutes: (n + 1) * 10
+      hours: rand(0..3),
+      minutes: rand(10..59)
     )
   end
   7.times do |n|
@@ -42,8 +42,8 @@ Textbook.all.each do |textbook|
       r_page: 40 + (n + 1),
       r_text: "testtesttest",
       textbook_id: textbook.id,
-      hours: n + 3,
-      minutes: (n + 1) * 20
+      hours: rand(0..3),
+      minutes: rand(10..59)
     )
   end
 end

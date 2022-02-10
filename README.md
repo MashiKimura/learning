@@ -33,9 +33,10 @@ https://learning37327.herokuapp.com/
 # 洗い出した要件
 [要件定義](https://docs.google.com/spreadsheets/d/1UyGfH1t4Il-dFLrofOh7sJAQpHHodvF2aaoOvmkVfNQ/edit?usp=sharing)
 # 実装した機能についての画像やGIFおよびその説明
-
+[![Image from Gyazo](https://i.gyazo.com/28e4ad1af56926073e8a3934c6b15ec7.gif)](https://gyazo.com/28e4ad1af56926073e8a3934c6b15ec7)
 # 実装予定の機能
-
+学習記録の編集機能と削除機能を実装中。  
+今後はカテゴリー機能・
 # データベース設計
 [![Image from Gyazo](https://i.gyazo.com/3a90cf3c176fc3a880f28453b1d595ee.png)](https://gyazo.com/3a90cf3c176fc3a880f28453b1d595ee)
 # 画面遷移図
