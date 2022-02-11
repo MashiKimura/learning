@@ -33,10 +33,14 @@ https://learning37327.herokuapp.com/
 # 洗い出した要件
 [要件定義](https://docs.google.com/spreadsheets/d/1UyGfH1t4Il-dFLrofOh7sJAQpHHodvF2aaoOvmkVfNQ/edit?usp=sharing)
 # 実装した機能についての画像やGIFおよびその説明
+### トップページ
+[![Image from Gyazo](https://i.gyazo.com/872ea563aae0f5b58c5938b1d7e1eec5.png)](https://gyazo.com/872ea563aae0f5b58c5938b1d7e1eec5)
+### 学習詳細ページ
+学習を記録し、自身の学習速度に応じて目標学習ページを表示します。また直近2週間分をグラフに表示します。
 [![Image from Gyazo](https://i.gyazo.com/28e4ad1af56926073e8a3934c6b15ec7.gif)](https://gyazo.com/28e4ad1af56926073e8a3934c6b15ec7)
 # 実装予定の機能
 学習記録の編集機能と削除機能を実装中。  
-今後はカテゴリー機能・
+今後はカテゴリー機能・日報機能・復習機能・目標時間保存機能を導入予定。
 # データベース設計
 [![Image from Gyazo](https://i.gyazo.com/3a90cf3c176fc3a880f28453b1d595ee.png)](https://gyazo.com/3a90cf3c176fc3a880f28453b1d595ee)
 # 画面遷移図
@@ -57,4 +61,6 @@ https://learning37327.herokuapp.com/
 % yarn install
 
 # 工夫したポイント
-    工夫したポイント
+教材を登録する際に、学習開始ページと終了ページを登録することで、前書きや後書きなどの学習と直接関係のないページを含めることなく、教材を登録することができる。また、バリデーションで終了ページが開始ページを超えない、学習したページが教材登録で設定したページの範囲内であることの条件を設定している。
+学習記録の詳細ページでは、学習記録から自身の学習速度を計算、学習速度と目標学習時間から週間目標ページと学習終了予定日を計算することで、学習計画に労力を割くことなく、目の前の学習に集中して取り組めるようにしている。
+また、自身が学習してきた時間が一目でわかるように棒グラフで表示している。なるべくモチベーションを下げないように、今週の学習記録がない場合は、直近の学習時間を表示するようにしている。
