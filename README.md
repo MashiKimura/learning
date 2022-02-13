@@ -48,7 +48,7 @@ https://learning37327.herokuapp.com/
 # 開発環境
 - フロントエンド　HTML&CSS, Javascript
 - バックエンド　ruby, Ruby on Rails
-- インフラ　
+- インフラ　heroku, MySQL
 - テスト　Rspec
 - テキストエディタ　VisualStudioCode
 - タスク管理　Github-ISSUE
