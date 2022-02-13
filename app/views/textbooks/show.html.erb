@@ -86,17 +86,19 @@
     <h2>学習履歴</h2>
     <div class="list-group">
       <% @records.each do |record| %>
-        <a href="#" class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <div class="left-style">
-              <h5 class="mb-1 left-style-unit"><%= "日付:#{record.r_date}" %></h5>
-              <h6 class="mb-1 left-style-unit"><%= "学習時間:#{record.hours}時間#{record.minutes}分" %></h6>
-              <h6 class="mb-1 left-style-unit"><%= "〜#{record.r_page}ページ" %></h6>
+        <%= link_to edit_textbook_record_path(@textbook, record),class: "list-group-item list-group-item-action" do %>
+          <%# <a href="#" class="list-group-item list-group-item-action"> %>
+            <div class="d-flex w-100 justify-content-between">
+              <div class="left-style">
+                <h5 class="mb-1 left-style-unit"><%= "日付:#{record.r_date}" %></h5>
+                <h6 class="mb-1 left-style-unit"><%= "学習時間:#{record.hours}時間#{record.minutes}分" %></h6>
+                <h6 class="mb-1 left-style-unit"><%= "〜#{record.r_page}ページ" %></h6>
+              </div>
+              <small><%= "更新日:#{record.created_at.strftime('%Y/%m/%d %H:%M')}" %></small>
             </div>
-            <small><%= "更新日:#{record.created_at.strftime('%Y/%m/%d %H:%M')}" %></small>
-          </div>
-          <small><%= "コメント:#{record.r_text}" %></small>
-        </a>
+            <small><%= "コメント:#{record.r_text}" %></small>
+          <%# </a> %>
+        <% end %>
       <% end %>
     </div>
   </div>
