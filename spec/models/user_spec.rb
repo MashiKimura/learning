@@ -21,13 +21,13 @@ RSpec.describe User, type: :model do
       it 'メールアドレスに@を含まない場合は登録できない' do
         @user.email = @user.email.gsub(/@/, '')
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'メールアドレスは重複していた場合は登録できない' do
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it 'パスワードが空では登録できない' do
         @user.password = ''
@@ -35,22 +35,22 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
       it 'パスワードが5文字以下では登録できない' do
-        @user.password = "a1234"
+        @user.password = 'a1234'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
       it 'パスワードが英数字混合だけでは登録できない' do
-        @user.password = "123456"
+        @user.password = '123456'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it 'パスワードが全角では登録できない' do
-        @user.password = "ａａ1234"
+        @user.password = 'ａａ1234'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it 'パスワードとパスワード（確認）が不一致では登録できない' do
         @user.password_confirmation = '123456'
@@ -65,7 +65,7 @@ RSpec.describe User, type: :model do
       it 'ニックネームは20文字以上では登録できない' do
         @user.nickname = 'あいうえおかきくけこさしすせそたちつてとな'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Nickname is too long (maximum is 20 characters)")
+        expect(@user.errors.full_messages).to include('Nickname is too long (maximum is 20 characters)')
       end
     end
   end

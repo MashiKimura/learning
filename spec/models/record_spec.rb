@@ -14,7 +14,7 @@ RSpec.describe Record, type: :model do
         expect(@record).to be_valid
       end
       it 'コメントが空白でも登録できる' do
-        @record.r_text = ""
+        @record.r_text = ''
         @record.valid?
         expect(@record).to be_valid
       end
@@ -31,15 +31,15 @@ RSpec.describe Record, type: :model do
     end
     context '学習記録が登録できないとき' do
       it '日付が空白では登録できない' do
-        @record.r_date = ""
+        @record.r_date = ''
         @record.valid?
         expect(@record.errors.full_messages).to include("R date can't be blank")
       end
       it '学習時間、時間と分が空白では登録できない' do
-        @record.hours = ""
-        @record.minutes = ""
+        @record.hours = ''
+        @record.minutes = ''
         @record.valid?
-        expect(@record.errors.full_messages).to include("Hours is not a number")
+        expect(@record.errors.full_messages).to include('Hours is not a number')
       end
       it '時間と分の両方が0では登録できない' do
         @record.hours = 0
@@ -50,32 +50,32 @@ RSpec.describe Record, type: :model do
       it '時間がマイナスでは登録できない' do
         @record.hours = -1
         @record.valid?
-        expect(@record.errors.full_messages).to include("Hours must be greater than or equal to 0")
+        expect(@record.errors.full_messages).to include('Hours must be greater than or equal to 0')
       end
       it '分がマイナスでは登録できない' do
         @record.minutes = -30
         @record.valid?
-        expect(@record.errors.full_messages).to include("Minutes must be greater than or equal to 0")
+        expect(@record.errors.full_messages).to include('Minutes must be greater than or equal to 0')
       end
       it '時間が24以上では登録できない' do
         @record.hours = 24
         @record.valid?
-        expect(@record.errors.full_messages).to include("Hours must be less than or equal to 23")
+        expect(@record.errors.full_messages).to include('Hours must be less than or equal to 23')
       end
       it '分が60以上では登録できない' do
         @record.minutes = 60
         @record.valid?
-        expect(@record.errors.full_messages).to include("Minutes must be less than or equal to 59")
+        expect(@record.errors.full_messages).to include('Minutes must be less than or equal to 59')
       end
       it '時間が小数では登録できない' do
         @record.hours = 10.1
         @record.valid?
-        expect(@record.errors.full_messages).to include("Hours must be an integer")
+        expect(@record.errors.full_messages).to include('Hours must be an integer')
       end
       it '分が小数では登録できない' do
         @record.minutes = 10.1
         @record.valid?
-        expect(@record.errors.full_messages).to include("Minutes must be an integer")
+        expect(@record.errors.full_messages).to include('Minutes must be an integer')
       end
       # it '終了ページが空白では登録できない' do
       #   @record.r_page = ""
@@ -85,27 +85,27 @@ RSpec.describe Record, type: :model do
       it '終了ページが教材の0だと登録できない' do
         @record.r_page = 0
         @record.valid?
-        expect(@record.errors.full_messages).to include("R page must be between start and end")
+        expect(@record.errors.full_messages).to include('R page must be between start and end')
       end
       it '終了ページが教材の開始ページ以下だと登録できない' do
         @record.r_page = @textbook.s_page
         @record.valid?
-        expect(@record.errors.full_messages).to include("R page must be between start and end")
+        expect(@record.errors.full_messages).to include('R page must be between start and end')
       end
       it '終了ページが教材の終了ページ以上だと登録できない' do
         @record.r_page = @textbook.e_page
         @record.valid?
-        expect(@record.errors.full_messages).to include("R page must be between start and end")
+        expect(@record.errors.full_messages).to include('R page must be between start and end')
       end
       it '終了ページが小数では登録できない' do
         @record.r_page = 10.1
         @record.valid?
-        expect(@record.errors.full_messages).to include("R page must be an integer")
+        expect(@record.errors.full_messages).to include('R page must be an integer')
       end
       it 'コメントは150文字を超えた場合には登録できない' do
         @record.r_text = Faker::Lorem.characters(number: 151)
         @record.valid?
-        expect(@record.errors.full_messages).to include("R text is too long (maximum is 150 characters)")
+        expect(@record.errors.full_messages).to include('R text is too long (maximum is 150 characters)')
       end
     end
   end

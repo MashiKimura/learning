@@ -14,24 +14,24 @@ RSpec.describe DfTime, type: :model do
     end
     context '目標学習時間が登録できないとき' do
       it 'いずれかの項目が空白の場合は登録できない' do
-        @df_time.d_mon = ""
+        @df_time.d_mon = ''
         @df_time.valid?
         expect(@df_time.errors.full_messages).to include("D mon can't be blank")
       end
       it 'いずれかの項目が0より少ない場合は登録できない' do
         @df_time.d_mon = -3
         @df_time.valid?
-        expect(@df_time.errors.full_messages).to include("D mon must be greater than or equal to 0")
+        expect(@df_time.errors.full_messages).to include('D mon must be greater than or equal to 0')
       end
       it 'いずれかの項目が23より大きい場合は登録できない' do
         @df_time.d_mon = 24
         @df_time.valid?
-        expect(@df_time.errors.full_messages).to include("D mon must be less than or equal to 23")
+        expect(@df_time.errors.full_messages).to include('D mon must be less than or equal to 23')
       end
       it 'いずれかの項目が小数の場合は登録できない' do
         @df_time.d_mon = 10.1
         @df_time.valid?
-        expect(@df_time.errors.full_messages).to include("D mon must be an integer")
+        expect(@df_time.errors.full_messages).to include('D mon must be an integer')
       end
     end
   end

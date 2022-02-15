@@ -20,9 +20,8 @@ class RecordsController < ApplicationController
   end
 
   def edit
-
   end
-  
+
   def update
     if @record.update(record_params)
       redirect_to textbook_path(@record.textbook)
@@ -32,14 +31,14 @@ class RecordsController < ApplicationController
   end
 
   private
-  
+
   def textbook_id_params
     @textbook = Textbook.find(params[:textbook_id])
   end
-  
+
   def record_params
     r_date = params.require(:record).permit(:r_date)
-    @date = Date.parse(r_date["r_date(1i)"] + "-" + r_date["r_date(2i)"] + "-" + r_date["r_date(3i)"])
+    @date = Date.parse(r_date['r_date(1i)'] + '-' + r_date['r_date(2i)'] + '-' + r_date['r_date(3i)'])
     record = params.require(:record).permit(:hours, :minutes, :r_page, :r_text).merge(textbook_id: @textbook.id, r_date: @date)
     record = hours_and_minutes_into_zero(record)
   end
@@ -47,12 +46,12 @@ class RecordsController < ApplicationController
   def find_record
     @record = Record.find(params[:id])
   end
-  
+
   def hours_and_minutes_into_zero(record)
     record[:hours] = record[:hours].to_i
     record[:minutes] = record[:minutes].to_i
     record[:r_page] = record[:r_page].to_i
-    return record
+    record
   end
 
   def authenticate_user
@@ -60,9 +59,6 @@ class RecordsController < ApplicationController
   end
 
   def user_match
-    unless current_user == @textbook.user
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user == @textbook.user
   end
 end
-

@@ -14,15 +14,11 @@ class Record < ApplicationRecord
   validate :textbook_page
 
   def hours_and_minutes_zero
-    if hours == 0 && minutes == 0
-      errors.add(:hours,"and Minutes be can't blank")
-    end
+    errors.add(:hours, "and Minutes be can't blank") if hours == 0 && minutes == 0
   end
 
   def textbook_page
     textbook = Textbook.find(textbook_id)
-    if (r_page <= textbook.s_page) || (r_page >= textbook.e_page)
-      errors.add(:r_page,"must be between start and end")
-    end
+    errors.add(:r_page, 'must be between start and end') if (r_page <= textbook.s_page) || (r_page >= textbook.e_page)
   end
 end

@@ -25,7 +25,7 @@ RSpec.describe Textbook, type: :model do
       it '教材名が50文字を超えては登録できない' do
         @textbook.book = 'aaaaabbbbbcccccdddddeeeeefffffggggghhhhhiiiiijjjjjk'
         @textbook.valid?
-        expect(@textbook.errors.full_messages).to include("Book is too long (maximum is 50 characters)")
+        expect(@textbook.errors.full_messages).to include('Book is too long (maximum is 50 characters)')
       end
       it '学習開始ページが空では登録できない' do
         @textbook.s_page = ''
@@ -35,7 +35,7 @@ RSpec.describe Textbook, type: :model do
       it '学習開始ページが３桁を超えると登録できない' do
         @textbook.s_page = 1000
         @textbook.valid?
-        expect(@textbook.errors.full_messages).to include("S page must be less than or equal to 999")
+        expect(@textbook.errors.full_messages).to include('S page must be less than or equal to 999')
       end
       it '学習終了ページが空では登録できない' do
         @textbook.e_page = ''
@@ -43,14 +43,14 @@ RSpec.describe Textbook, type: :model do
         expect(@textbook.errors.full_messages).to include("E page can't be blank")
       end
       it '学習終了ページが4桁を超えると登録できない' do
-        @textbook.e_page = 10000
+        @textbook.e_page = 10_000
         @textbook.valid?
-        expect(@textbook.errors.full_messages).to include("E page must be between StartPage to 9999")
+        expect(@textbook.errors.full_messages).to include('E page must be between StartPage to 9999')
       end
       it '学習終了ページが開始ページを超えていると登録できない' do
         @textbook.e_page = @textbook.s_page
         @textbook.valid?
-        expect(@textbook.errors.full_messages).to include("E page must be between StartPage to 9999")
+        expect(@textbook.errors.full_messages).to include('E page must be between StartPage to 9999')
       end
     end
   end
