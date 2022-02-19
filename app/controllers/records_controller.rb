@@ -1,8 +1,8 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user, only: [:new, :create, :edit, :update]
-  before_action :textbook_id_params, only: [:new, :create, :edit, :update]
-  before_action :user_match, only: [:new, :create, :edit, :update]
-  before_action :find_record, only: [:edit, :update]
+  before_action :authenticate_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :textbook_id_params, only: [:new, :create, :edit, :update, :destroy]
+  before_action :user_match, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_record, only: [:edit, :update, :destroy]
 
   def new
     @record = Record.new
@@ -24,10 +24,15 @@ class RecordsController < ApplicationController
 
   def update
     if @record.update(record_params)
-      redirect_to textbook_path(@record.textbook)
+      redirect_to textbook_path(@textbook)
     else
       render :edit
     end
+  end
+
+  def destroy
+    @record.destroy
+    redirect_to textbook_path(@textbook)
   end
 
   private

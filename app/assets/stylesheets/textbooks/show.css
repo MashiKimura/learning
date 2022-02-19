@@ -44,3 +44,15 @@ ul {
 .today-text, .week-text {
   width: 300px;
 }
+
+.trash_button {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  
+}
+
+.trash_button_action:hover {
+  background-color: lightgrey;
+  color: red;
+}
