@@ -12,9 +12,9 @@
   border-top: 10px double rgb(131, 131, 133) ;
 }
 
-.col {
+/* .col {
   width: 25%;
-}
+} */
 
 .form-group {
   margin-bottom: 20px;
@@ -22,6 +22,7 @@
 
 .card {
   height: 500px;
+  width: 340px;
 }
 
 .card-image {
@@ -53,4 +54,10 @@
 
 .created-at {
   display: block;
+}
+
+@media (max-width: 500px) {
+  .row {
+    padding: 0 150px;
+  }
 }

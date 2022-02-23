@@ -34,33 +34,25 @@ class TextbooksController < ApplicationController
     @df_time_data = bar_data_dftime(@textbook)
 
     # ラベルに渡す日付(今日)
-    @b_date = Date.today.beginning_of_week
-    @e_date = Date.today.end_of_week
-    week_date = week_date_calc(@b_date, @e_date)
-    @week_date = week_date.to_json.html_safe
-
+    @b_date, @e_date, week_date, @week_date = week_date_set(Date.today)
+    
     # 学習記録の最新日付の取得
     arrays = date_hash.keys
     @max_date = arrays.max
-
+    
     # 学習記録がある場合
     if @max_date.present?
       # グラフ-1
       # グラフ-1に渡す日付(1番目のグラフ)
-      @tb_date = @max_date.beginning_of_week
-      @te_date = @max_date.end_of_week
-      week_date = week_date_calc(@tb_date, @te_date)
-      @week_date = week_date.to_json.html_safe
+      @tb_date, @te_date, week_date, @week_date = week_date_set(@max_date)
       # グラフ-1に渡す学習時間
       @b_data = bar_data_record(date_hash, week_date)
       @sum_time_t = sum_time_week(@tb_date, @te_date)
 
       # グラフ-2
       # グラフ-2に渡す日付(2番目のグラフ)
-      @lb_date = @max_date.prev_week
-      @le_date = @max_date.prev_week(:sunday)
-      week_date = week_date_calc(@lb_date, @le_date)
-      @week_date_l = week_date.to_json.html_safe
+      @lb_date, @le_date, week_date, @week_date_l = week_date_set(@max_date.weeks_ago(1))
+      
       # グラフ-2に渡す学習時間
       @prev_week_present = date_hash.find { |x| (x[0] >= @lb_date) && (x[0] <= @le_date) && (x[1] > 0) }
       if @prev_week_present.present?
@@ -128,6 +120,24 @@ class TextbooksController < ApplicationController
 
   private
 
+  def week_date_set(search_date)
+    b_date = search_date.beginning_of_week
+    e_date = search_date.end_of_week
+    week_date = week_date_calc(b_date, e_date)
+    week_date_json = week_date.to_json.html_safe
+    return b_date, e_date, week_date, week_date_json
+  end
+
+  def week_date_calc(b_date, e_date) # date型を２つ渡し、その間の日付を配列に格納する
+    w_date = []
+    s_date = b_date
+    while s_date <= e_date
+      w_date << s_date
+      s_date += 1
+    end
+    w_date
+  end
+
   def calc_times(hours, minutes)
     hours += minutes / 60
     minutes = minutes % 60
@@ -162,15 +172,7 @@ class TextbooksController < ApplicationController
     b_data
   end
 
-  def week_date_calc(b_date, e_date) # date型を２つ渡し、その間の日付を配列に格納する
-    w_date = []
-    s_date = b_date
-    while s_date <= e_date
-      w_date << s_date
-      s_date += 1
-    end
-    w_date
-  end
+
 
   def sum_time_week(b_date, _e_date) # 週間合計学習時間 date型、週初と週末を渡し、合計学習時間{hours: 数値,minutes: 数値}を返す
     sum_time = {}
