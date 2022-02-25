@@ -123,19 +123,9 @@ class TextbooksController < ApplicationController
   def week_date_set(search_date)
     b_date = search_date.beginning_of_week
     e_date = search_date.end_of_week
-    week_date = week_date_calc(b_date, e_date)
+    week_date = (b_date..e_date).to_a
     week_date_json = week_date.to_json.html_safe
     return b_date, e_date, week_date, week_date_json
-  end
-
-  def week_date_calc(b_date, e_date) # date型を２つ渡し、その間の日付を配列に格納する
-    w_date = []
-    s_date = b_date
-    while s_date <= e_date
-      w_date << s_date
-      s_date += 1
-    end
-    w_date
   end
 
   def calc_times(hours, minutes)
