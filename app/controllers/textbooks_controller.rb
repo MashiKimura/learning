@@ -61,6 +61,7 @@ class TextbooksController < ApplicationController
       if @prev_week_present.present?
         @b_data_l = bar_data_record(date_hash, @week_date_second)
         @sum_time_l = sum_time_week(@week_date_second[0], @week_date_second[6])
+        
       end
 
       # 学習速度計算
