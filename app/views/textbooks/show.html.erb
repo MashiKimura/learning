@@ -62,10 +62,10 @@
     <div class="graph_content">
       <div class="datetime_content">
         <% if @max_date.present? %>
-          <p class="date_content"><%= "#{@tb_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@tb_date.wday]})")} 〜 #{@te_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@te_date.wday]})")}" %></p>
+          <p class="date_content"><%= "#{@week_date_first[0].strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@week_date_first[0].wday]})")} 〜 #{@week_date_first[6].strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@week_date_first[6].wday]})")}" %></p>
           <p class="time_content"><%= "合計学習時間：#{@sum_time_t[:hours]} 時間 #{@sum_time_t[:minutes]} 分" %></p>
         <% else %>
-          <p class="date_content"><%= "#{@b_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@b_date.wday]})")} 〜 #{@e_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@e_date.wday]})")}" %></p>
+          <p class="date_content"><%= "#{@week_date_first[0].strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@week_date_first[0].wday]})")} 〜 #{@week_date_first[6].strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@week_date_first[6].wday]})")}" %></p>
         <% end %>
       </div>
       <canvas id="myChart1" width="300" height="100"></canvas>
@@ -74,7 +74,7 @@
   <% if @prev_week_present.present? %>
     <div class="graph_content">
       <div class="datetime_content">
-        <p class="date_content"><%= "#{@lb_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@lb_date.wday]})")} 〜 #{@le_date.strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@le_date.wday]})")}" %></p>
+        <p class="date_content"><%= "#{@week_date_second[0].strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@week_date_second[0].wday]})")} 〜 #{@week_date_second[6].strftime("%Y/%m/%d(#{%w(日 月 火 水 木 金 土)[@week_date_second[6].wday]})")}" %></p>
         <p class="time_content"><%= "合計学習時間：#{@sum_time_l[:hours]} 時間 #{@sum_time_l[:minutes]} 分" %></p>
       </div>
       <canvas id="myChart2" width="300" height="100"></canvas>
@@ -114,7 +114,7 @@
     const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: <%= @week_date %>,
+            labels: <%= @week_date_f_json %>,
             datasets: [
               {  
                 label: '目標学習時間',
@@ -159,7 +159,7 @@
       const myChart2 = new Chart(ctx2, {
           type: 'bar',
           data: {
-              labels: <%= @week_date_l %>,
+              labels: <%= @week_date_s_json %>,
               datasets: [
                 {  
                   label: '目標学習時間',

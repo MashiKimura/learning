@@ -34,7 +34,8 @@ class TextbooksController < ApplicationController
     @df_time_data = bar_data_dftime(@textbook)
 
     # ラベルに渡す日付(今日)
-    @b_date, @e_date, week_date, @week_date = week_date_set(Date.today)
+    # @b_date, @e_date, week_date, @week_date = week_date_set(Date.today) 変更済み
+    @week_date_first, @week_date_f_json = week_date_set(Date.today)
     
     # 学習記録の最新日付の取得
     arrays = date_hash.keys
@@ -44,20 +45,22 @@ class TextbooksController < ApplicationController
     if @max_date.present?
       # グラフ-1
       # グラフ-1に渡す日付(1番目のグラフ)
-      @tb_date, @te_date, week_date, @week_date = week_date_set(@max_date)
+      # @tb_date, @te_date, @week_date_first, @week_date_f_json = week_date_set(@max_date) 変更済み
+      @week_date_first, @week_date_f_json = week_date_set(@max_date)
       # グラフ-1に渡す学習時間
-      @b_data = bar_data_record(date_hash, week_date)
-      @sum_time_t = sum_time_week(@tb_date, @te_date)
+      @b_data = bar_data_record(date_hash, @week_date_first)
+      @sum_time_t = sum_time_week(@week_date_first[0], @week_date_first[6])
 
       # グラフ-2
       # グラフ-2に渡す日付(2番目のグラフ)
-      @lb_date, @le_date, week_date, @week_date_l = week_date_set(@max_date.weeks_ago(1))
-      
+      # @lb_date, @le_date, @week_date_second, @week_date_l = week_date_set(@max_date.weeks_ago(1)) 変更済み
+      @week_date_second, @week_date_s_json = week_date_set(@max_date.weeks_ago(1))
+
       # グラフ-2に渡す学習時間
-      @prev_week_present = date_hash.find { |x| (x[0] >= @lb_date) && (x[0] <= @le_date) && (x[1] > 0) }
+      @prev_week_present = date_hash.find { |x| (x[0] >= @week_date_second[0]) && (x[0] <= @week_date_second[6]) && (x[1] > 0) }
       if @prev_week_present.present?
-        @b_data_l = bar_data_record(date_hash, week_date)
-        @sum_time_l = sum_time_week(@lb_date, @le_date)
+        @b_data_l = bar_data_record(date_hash, @week_date_second)
+        @sum_time_l = sum_time_week(@week_date_second[0], @week_date_second[6])
       end
 
       # 学習速度計算
@@ -125,7 +128,7 @@ class TextbooksController < ApplicationController
     e_date = search_date.end_of_week
     week_date = (b_date..e_date).to_a
     week_date_json = week_date.to_json.html_safe
-    return b_date, e_date, week_date, week_date_json
+    return week_date, week_date_json
   end
 
   def calc_times(hours, minutes)
