@@ -34,7 +34,6 @@ class TextbooksController < ApplicationController
     @df_time_data = bar_data_dftime(@textbook)
 
     # ラベルに渡す日付(今日)
-    # @b_date, @e_date, week_date, @week_date = week_date_set(Date.today) 変更済み
     @week_date_first, @week_date_f_json = week_date_set(Date.today)
     
     # 学習記録の最新日付の取得
@@ -45,7 +44,6 @@ class TextbooksController < ApplicationController
     if @max_date.present?
       # グラフ-1
       # グラフ-1に渡す日付(1番目のグラフ)
-      # @tb_date, @te_date, @week_date_first, @week_date_f_json = week_date_set(@max_date) 変更済み
       @week_date_first, @week_date_f_json = week_date_set(@max_date)
       # グラフ-1に渡す学習時間
       @b_data = bar_data_record(date_hash, @week_date_first)
@@ -53,7 +51,6 @@ class TextbooksController < ApplicationController
 
       # グラフ-2
       # グラフ-2に渡す日付(2番目のグラフ)
-      # @lb_date, @le_date, @week_date_second, @week_date_l = week_date_set(@max_date.weeks_ago(1)) 変更済み
       @week_date_second, @week_date_s_json = week_date_set(@max_date.weeks_ago(1))
 
       # グラフ-2に渡す学習時間
@@ -170,18 +167,12 @@ class TextbooksController < ApplicationController
 
   def sum_time_week(b_date, _e_date) # 週間合計学習時間 date型、週初と週末を渡し、合計学習時間{hours: 数値,minutes: 数値}を返す
     sum_time = {}
-    sum_hours = 0
-    sum_minutes = 0
     week_group_h = @records.group_by_week(:r_date, week_start: :monday).sum(:hours)
     week_group_m = @records.group_by_week(:r_date, week_start: :monday).sum(:minutes)
     sum_hours = week_group_h[b_date]
     sum_minutes = week_group_m[b_date]
-    hours = sum_minutes / 60
-    sum_hours += hours
-    sum_minutes %= 60
-    sum_time[:hours] = sum_hours
-    sum_time[:minutes] = sum_minutes
-    sum_time
+    sum_time = calc_times(sum_hours, sum_minutes)
+
   end
 
   def hours_conversion(date_group_h, date_group_m) # 分を時間に変換する　{日付=>時間}{日付=>分}を渡して{日付=>時間}を返す ※分は返さない
